@@ -1,0 +1,198 @@
+/* ========================================
+   Experience Section Styles
+   ======================================== */
+
+.experience {
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Timeline Container --- */
+.experience__timeline {
+  position: relative;
+  margin-top: var(--space-3xl);
+  padding: var(--space-xl) 0;
+}
+
+/* Center line */
+.experience__line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    var(--accent-cyan) 0%,
+    var(--accent-violet) 50%,
+    var(--accent-pink) 100%
+  );
+  border-radius: var(--radius-full);
+}
+
+.experience__line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: inherit;
+  filter: blur(8px);
+  opacity: 0.5;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* --- Timeline Entry --- */
+.experience__entry {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--space-3xl);
+  width: 100%;
+}
+
+.experience__entry:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternating layout */
+.experience__entry--left {
+  justify-content: flex-start;
+  padding-right: calc(50% + 40px);
+}
+
+.experience__entry--right {
+  justify-content: flex-end;
+  padding-left: calc(50% + 40px);
+}
+
+/* --- Timeline Dot --- */
+.experience__dot {
+  position: absolute;
+  left: 50%;
+  top: var(--space-xl);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.5),
+              0 0 30px rgba(var(--accent-cyan-rgb), 0.2);
+}
+
+.experience__dot::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--accent-cyan-rgb), 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* --- Connector Line (dot to card) --- */
+.experience__connector {
+  position: absolute;
+  top: calc(var(--space-xl) + 5px);
+  width: 40px;
+  height: 2px;
+  background: var(--accent-cyan);
+  z-index: 1;
+}
+
+.experience__entry--left .experience__connector {
+  right: calc(50% - 40px + 6px);
+  left: auto;
+}
+
+.experience__entry--right .experience__connector {
+  left: calc(50% + 6px);
+  right: auto;
+}
+
+/* --- Entry Card --- */
+.experience__card {
+  background: rgba(13, 13, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  width: 100%;
+  transition: border-color var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-spring),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.experience__card:hover {
+  border-color: rgba(var(--accent-cyan-rgb), 0.4);
+  transform: translateY(-4px);
+  box-shadow: var(--glow-cyan);
+}
+
+.experience__role {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.experience__company {
+  color: var(--accent-cyan);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-xs);
+}
+
+.experience__duration {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-md);
+}
+
+.experience__description {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-lg);
+}
+
+.experience__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.experience__tag {
+  background: var(--bg-surface-alt);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-medium);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .experience__line {
+    left: 20px;
+  }
+
+  .experience__entry--left,
+  .experience__entry--right {
+    padding-left: 60px;
+    padding-right: 0;
+    justify-content: flex-start;
+  }
+
+  .experience__dot {
+    left: 20px;
+  }
+
+  .experience__connector {
+    left: 26px !important;
+    right: auto !important;
+    width: 28px;
+  }
+}

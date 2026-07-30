@@ -1,0 +1,192 @@
+/* ========================================
+   Projects Section Styles
+   ======================================== */
+
+.projects {
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Filter Bar --- */
+.projects__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.projects__filter-btn {
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  background: rgba(13, 13, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.1);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.projects__filter-btn:hover {
+  color: var(--text-primary);
+  border-color: rgba(var(--accent-cyan-rgb), 0.3);
+}
+
+.projects__filter-btn--active {
+  color: var(--text-primary);
+  background: var(--gradient-primary);
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(var(--accent-cyan-rgb), 0.3),
+              0 0 60px rgba(var(--accent-violet-rgb), 0.15);
+}
+
+/* --- Projects Grid --- */
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+/* --- Project Card --- */
+.project-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(13, 13, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.1);
+  transition: transform var(--duration-slow) var(--ease-spring),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+  will-change: transform;
+  perspective: 1000px;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.project-card__inner {
+  transform-style: preserve-3d;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+/* --- Card Header (Gradient Area) --- */
+.project-card__header {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: filter var(--duration-normal) var(--ease-out);
+}
+
+.project-card:hover .project-card__header {
+  filter: brightness(1.3) saturate(1.2);
+}
+
+.project-card__header-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.project-card:hover .project-card__header-bg {
+  opacity: 0.35;
+}
+
+/* Decorative icon */
+.project-card__icon {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-4xl);
+  color: rgba(255, 255, 255, 0.15);
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  user-select: none;
+}
+
+/* --- Card Body --- */
+.project-card__body {
+  padding: var(--space-xl);
+}
+
+.project-card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.project-card__description {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+}
+
+/* --- Tech Tags --- */
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.project-card__tag {
+  background: var(--bg-surface-alt);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-medium);
+}
+
+/* --- Action Buttons --- */
+.project-card__actions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.project-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  transition: color var(--duration-fast) var(--ease-out);
+  padding: var(--space-xs) 0;
+}
+
+.project-card__link:hover {
+  color: var(--accent-cyan);
+}
+
+.project-card__link svg {
+  font-size: 0.85rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card__body {
+    padding: var(--space-lg);
+  }
+}

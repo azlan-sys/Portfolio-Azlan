@@ -1,0 +1,173 @@
+/* ========================================
+   Skills Section Styles
+   ======================================== */
+
+.skills {
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Category Tabs --- */
+.skills__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.skills__tab {
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  background: rgba(13, 13, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.1);
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  z-index: 1;
+}
+
+.skills__tab:hover {
+  color: var(--text-primary);
+  border-color: rgba(var(--accent-cyan-rgb), 0.3);
+}
+
+.skills__tab--active {
+  color: var(--text-primary);
+  background: var(--gradient-primary);
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(var(--accent-cyan-rgb), 0.3),
+              0 0 60px rgba(var(--accent-violet-rgb), 0.15);
+}
+
+/* --- Skills Grid --- */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/* --- Skill Card --- */
+.skill-card {
+  background: rgba(13, 13, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  position: relative;
+  transition: transform var(--duration-normal) var(--ease-spring),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--gradient-primary);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--glow-cyan);
+}
+
+.skill-card:hover::before {
+  opacity: 0.4;
+}
+
+/* --- Icon --- */
+.skill-card__icon {
+  font-size: 2rem;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+
+.skill-card:hover .skill-card__icon {
+  color: var(--accent-violet);
+}
+
+/* --- Info --- */
+.skill-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.skill-card__name {
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-xs);
+}
+
+/* --- Progress Ring --- */
+.skill-card__ring {
+  flex-shrink: 0;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.skill-card__ring svg {
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+
+.skill-card__ring-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 4;
+}
+
+.skill-card__ring-progress {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke: url(#skillGradient);
+  transition: stroke-dashoffset 1.5s var(--ease-out);
+}
+
+.skill-card__ring-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* --- Responsive --- */
+@media (max-width: 968px) {
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-card {
+    padding: var(--space-lg);
+  }
+}
