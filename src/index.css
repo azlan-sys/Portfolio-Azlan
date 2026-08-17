@@ -117,9 +117,9 @@
   --z-base: 1;
   --z-card: 10;
   --z-nav: 100;
-  --z-modal: 200;
-  --z-cursor: 500;
-  --z-loader: 1000;
+  --z-modal: 9000;
+  --z-loader: 99000;
+  --z-cursor: 999999;
 }
 
 /* --- Global Reset --- */

@@ -79,6 +79,7 @@ export default function ProjectModal({ project, onClose }) {
             {/* Close Button */}
             <button
               className="project-modal-close-btn"
+              data-cursor="pointer"
               onClick={onClose}
               aria-label="Close modal"
               title="Press Esc to close"
@@ -173,6 +174,7 @@ export default function ProjectModal({ project, onClose }) {
                   <a
                     href={project.liveUrl}
                     className="project-modal-cta project-modal-cta--primary"
+                    data-cursor="pointer"
                     style={{
                       background: `linear-gradient(135deg, ${project.color}, #7928ca)`,
                     }}
@@ -186,6 +188,7 @@ export default function ProjectModal({ project, onClose }) {
                   <a
                     href={project.githubUrl}
                     className="project-modal-cta project-modal-cta--secondary"
+                    data-cursor="pointer"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -313,6 +316,7 @@ export default function ProjectModal({ project, onClose }) {
                     <a
                       href={project.liveUrl}
                       className="project-modal-cta project-modal-cta--primary"
+                      data-cursor="pointer"
                       style={{
                         background: `linear-gradient(135deg, ${project.color}, #7928ca)`,
                       }}
@@ -326,6 +330,7 @@ export default function ProjectModal({ project, onClose }) {
                     <a
                       href={project.githubUrl}
                       className="project-modal-cta project-modal-cta--secondary"
+                      data-cursor="pointer"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -333,7 +338,11 @@ export default function ProjectModal({ project, onClose }) {
                     </a>
                   )}
                 </div>
-                <button className="project-modal-close-footer-btn" onClick={onClose}>
+                <button
+                  className="project-modal-close-footer-btn"
+                  data-cursor="pointer"
+                  onClick={onClose}
+                >
                   Back to Portfolio
                 </button>
               </div>
