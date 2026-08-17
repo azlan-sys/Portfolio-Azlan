@@ -39,7 +39,7 @@ export default function ProjectCard({ project }) {
           transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
         }}
       >
-        {/* Header / Gradient Area */}
+        {/* Header / Media Area */}
         <div className="project-card__header">
           <div
             className="project-card__header-bg"
@@ -47,7 +47,24 @@ export default function ProjectCard({ project }) {
               background: `radial-gradient(ellipse at 50% 30%, ${project.color} 0%, transparent 70%)`,
             }}
           />
-          <div className="project-card__icon">&lt;/&gt;</div>
+          {project.video ? (
+            <video
+              className="project-card__media"
+              src={project.video.startsWith('http') ? project.video : `${import.meta.env.BASE_URL}${project.video.replace(/^\//, '')}`}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          ) : project.image ? (
+            <img
+              className="project-card__media"
+              src={project.image.startsWith('http') ? project.image : `${import.meta.env.BASE_URL}${project.image.replace(/^\//, '')}`}
+              alt={project.title}
+            />
+          ) : (
+            <div className="project-card__icon">&lt;/&gt;</div>
+          )}
         </div>
 
         {/* Body */}

@@ -101,6 +101,22 @@
   opacity: 0.35;
 }
 
+/* Media (Video & Image) */
+.project-card__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.project-card:hover .project-card__media {
+  transform: scale(1.03);
+}
+
 /* Decorative icon */
 .project-card__icon {
   position: relative;
