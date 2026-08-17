@@ -55,6 +55,7 @@ export default function ProjectCard({ project }) {
               loop
               muted
               playsInline
+              preload="auto"
             />
           ) : project.image ? (
             <img

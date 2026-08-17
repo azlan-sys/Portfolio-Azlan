@@ -74,6 +74,7 @@ export const projectsData = [
   {
     id: 1,
     title: 'Smart Study Content Hub',
+    video: 'videos/smart-study-hub.mp4',
     description:
       'Smart study content hub with gamification for primary school students featuring interactive lessons, quizzes, badges, and progress tracking.',
     longDescription:
