@@ -66,22 +66,32 @@ export default function ProjectCard({ project }) {
 
           {/* Actions */}
           <div className="project-card__actions">
-            <a
-              href={project.liveUrl}
-              className="project-card__link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaExternalLinkAlt /> Live Demo
-            </a>
-            <a
-              href={project.githubUrl}
-              className="project-card__link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub /> Source Code
-            </a>
+            {project.liveUrl && project.liveUrl !== '#' && (
+              <a
+                href={project.liveUrl}
+                className="project-card__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaExternalLinkAlt /> Live Demo
+              </a>
+            )}
+            {project.githubUrl && project.githubUrl !== '#' && (
+              <a
+                href={project.githubUrl}
+                className="project-card__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub /> Source Code
+              </a>
+            )}
+            {(!project.liveUrl || project.liveUrl === '#') &&
+              (!project.githubUrl || project.githubUrl === '#') && (
+                <span className="project-card__link project-card__link--disabled" style={{ opacity: 0.5, cursor: 'default' }}>
+                  <FaGithub /> In Development
+                </span>
+              )}
           </div>
         </div>
       </div>

@@ -73,15 +73,15 @@ export const skillsData = [
 export const projectsData = [
   {
     id: 1,
-    title: 'NebulaChat',
+    title: 'Smart Study Content Hub',
     description:
-      'Real-time messaging platform with end-to-end encryption, group channels, file sharing, and AI-powered chat assistants.',
+      'Smart study content hub with gamification for primary school students featuring interactive lessons, quizzes, badges, and progress tracking.',
     longDescription:
-      'A full-featured messaging app built with WebSockets for real-time communication, E2E encryption for privacy, and integrated AI assistants for smart replies.',
-    techStack: ['React', 'Node.js', 'WebSocket', 'MongoDB', 'Redis'],
+      'A comprehensive educational platform designed for primary school students and teachers. Features interactive lesson and quiz builders, automated scoring, gamified rewards with badges and leaderboards, and dual role-based dashboards.',
+    techStack: ['Laravel', 'PHP', 'Tailwind CSS', 'Alpine.js', 'MySQL', 'Vite'],
     category: 'Full-Stack',
     liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/azlan-ive/Smart_Study_Hub.git',
     featured: true,
     color: '#00e5ff',
   },
