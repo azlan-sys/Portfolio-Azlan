@@ -25,6 +25,9 @@ export default function ProjectModal({ project, onClose }) {
       }
     };
 
+    // Pause Lenis smooth scrolling while modal is open
+    window.__lenis?.stop();
+
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
@@ -32,6 +35,7 @@ export default function ProjectModal({ project, onClose }) {
     return () => {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+      window.__lenis?.start();
     };
   }, [project, onClose]);
 
@@ -45,7 +49,7 @@ export default function ProjectModal({ project, onClose }) {
 
   return (
     <AnimatePresence>
-      <div className="project-modal-root">
+      <div className="project-modal-root" data-lenis-prevent="true">
         {/* Backdrop */}
         <motion.div
           className="project-modal-backdrop"
@@ -57,10 +61,15 @@ export default function ProjectModal({ project, onClose }) {
         />
 
         {/* Modal Wrapper */}
-        <div className="project-modal-wrapper" onClick={onClose}>
+        <div
+          className="project-modal-wrapper"
+          data-lenis-prevent="true"
+          onClick={onClose}
+        >
           <motion.div
             ref={modalRef}
             className="project-modal-container"
+            data-lenis-prevent="true"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.94, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -88,47 +97,52 @@ export default function ProjectModal({ project, onClose }) {
               <span className="project-modal-esc-hint">ESC</span>
             </button>
 
-            {/* Media Banner / Video Player */}
-            <div className="project-modal-media-header">
-              <div
-                className="project-modal-media-glow"
-                style={{
-                  background: `radial-gradient(ellipse at 50% 40%, rgba(${hexRgb}, 0.4) 0%, transparent 75%)`,
-                }}
-              />
-              {project.video ? (
-                <div className="project-modal-video-box">
-                  <video
-                    className="project-modal-video"
-                    src={mediaUrl(project.video)}
-                    autoPlay
-                    loop
-                    muted
-                    controls
-                    playsInline
-                    preload="auto"
-                  />
-                </div>
-              ) : project.image ? (
-                <img
-                  className="project-modal-image"
-                  src={mediaUrl(project.image)}
-                  alt={project.title}
+            {/* Scrollable Viewport Container */}
+            <div
+              className="project-modal-scroll-area"
+              data-lenis-prevent="true"
+            >
+              {/* Media Banner / Video Player */}
+              <div className="project-modal-media-header">
+                <div
+                  className="project-modal-media-glow"
+                  style={{
+                    background: `radial-gradient(ellipse at 50% 40%, rgba(${hexRgb}, 0.4) 0%, transparent 75%)`,
+                  }}
                 />
-              ) : (
-                <div className="project-modal-placeholder-banner">
-                  <div
-                    className="project-modal-code-symbol"
-                    style={{ color: project.color }}
-                  >
-                    &lt;/&gt;
+                {project.video ? (
+                  <div className="project-modal-video-box">
+                    <video
+                      className="project-modal-video"
+                      src={mediaUrl(project.video)}
+                      autoPlay
+                      loop
+                      muted
+                      controls
+                      playsInline
+                      preload="auto"
+                    />
                   </div>
-                </div>
-              )}
-            </div>
+                ) : project.image ? (
+                  <img
+                    className="project-modal-image"
+                    src={mediaUrl(project.image)}
+                    alt={project.title}
+                  />
+                ) : (
+                  <div className="project-modal-placeholder-banner">
+                    <div
+                      className="project-modal-code-symbol"
+                      style={{ color: project.color }}
+                    >
+                      &lt;/&gt;
+                    </div>
+                  </div>
+                )}
+              </div>
 
-            {/* Modal Body */}
-            <div className="project-modal-body">
+              {/* Modal Body */}
+              <div className="project-modal-body">
               {/* Meta Badges Row */}
               <div className="project-modal-meta-row">
                 <span
@@ -347,6 +361,7 @@ export default function ProjectModal({ project, onClose }) {
                 </button>
               </div>
             </div>
+          </div>
           </motion.div>
         </div>
       </div>
