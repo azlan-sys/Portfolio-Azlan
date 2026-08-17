@@ -7,7 +7,7 @@ import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
 import './Projects.css';
 
-const FILTERS = ['All', 'Full-Stack', 'Frontend', 'Backend'];
+const FILTERS = ['All', 'Full-Stack', 'AI/ML', 'Frontend', 'Backend'];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
