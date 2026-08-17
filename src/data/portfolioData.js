@@ -74,11 +74,43 @@ export const projectsData = [
   {
     id: 1,
     title: 'Smart Study Content Hub',
+    tagline: 'Interactive Gamified Learning Platform for Primary Students',
+    role: 'Full-Stack Developer',
+    year: '2024',
     video: 'videos/smart-study-hub.mp4',
     description:
       'Smart study content hub with gamification for primary school students featuring interactive lessons, quizzes, badges, and progress tracking.',
     longDescription:
       'A comprehensive educational platform designed for primary school students and teachers. Features interactive lesson and quiz builders, automated scoring, gamified rewards with badges and leaderboards, and dual role-based dashboards.',
+    overview:
+      'Smart Study Content Hub transforms primary education by introducing gamification into daily classroom learning. Designed with separate workflows for teachers and young students, it enables educators to build custom lessons and quizzes while encouraging students to complete learning tracks to earn badges, level up on leaderboards, and master core subjects.',
+    highlights: [
+      'Gamified Badges & Points',
+      'Dual Role Dashboards',
+      'Interactive Quiz Engine',
+      'Class Code Onboarding',
+      'Automated Teacher Reports',
+    ],
+    keyFeatures: [
+      {
+        title: 'Interactive Lesson & Quiz Builder',
+        desc: 'Teachers can create multimedia lessons, publish quizzes with multiple choice questions, and manage content per subject.',
+      },
+      {
+        title: 'Gamification & Achievement Badges',
+        desc: 'Students unlock custom badges, level up with study points, and track their achievements on a kid-friendly visual dashboard.',
+      },
+      {
+        title: 'Real-Time Class Leaderboards',
+        desc: 'Fosters healthy learning motivation through student rankings and progress tracking across subjects.',
+      },
+      {
+        title: 'Classroom & Student Management',
+        desc: 'Seamless classroom code onboarding, student progress analytics, and secure role-based access for teachers and students.',
+      },
+    ],
+    architecture:
+      'Built on Laravel 12 with Alpine.js and Tailwind CSS for rapid, reactive UI components without SPA routing overhead. Relational schema models subjects, topics, quizzes, and automated badge triggers.',
     techStack: ['Laravel', 'PHP', 'Tailwind CSS', 'Alpine.js', 'MySQL', 'Vite'],
     category: 'Full-Stack',
     liveUrl: '#',
@@ -89,10 +121,42 @@ export const projectsData = [
   {
     id: 2,
     title: 'AI-Powered Smart Camera Dry Box',
+    tagline: 'IoT Environmental Telemetry & Predictive Silica Management',
+    role: 'IoT & Full-Stack Developer',
+    year: '2024',
     description:
       'Smart IoT & AI-driven dry box monitoring system for camera equipment with real-time humidity tracking, predictive silica replacement AI, and automated alerts.',
     longDescription:
       'An intelligent IoT environmental control and monitoring platform for camera gear. Features live telemetry sensor tracking, AI-powered silica replacement prediction, automated humidity alerts, and onboarding setup wizard.',
+    overview:
+      'High humidity is the primary cause of lens fungus and electronic corrosion in sensitive camera equipment. The AI-Powered Smart Camera Dry Box continuously monitors temperature and relative humidity inside dry cabinets, using predictive AI to estimate silica gel saturation and alert users before moisture damage occurs.',
+    highlights: [
+      'Live Sensor Telemetry',
+      'AI Silica Saturation Prediction',
+      'Humidity Threshold Alerts',
+      'Interactive Demo Mode',
+      'ESP32 Firmware Wizard',
+    ],
+    keyFeatures: [
+      {
+        title: 'Live Telemetry & Sensor Tracking',
+        desc: 'Real-time charts tracking relative humidity and temperature trends with configurable safe threshold boundaries.',
+      },
+      {
+        title: 'AI Predictive Silica Replacement',
+        desc: 'Analyzes moisture absorption decay curves to predict precisely when silica desiccant needs regeneration or replacement.',
+      },
+      {
+        title: 'Automated Threshold Notifications',
+        desc: 'Triggers instant visual dashboard alerts and automated notifications whenever cabinet humidity exceeds safe limits (>60% RH).',
+      },
+      {
+        title: 'Device Onboarding & Setup Wizard',
+        desc: 'Step-by-step firmware configuration wizard, device pairing instructions, and a live interactive demo playground.',
+      },
+    ],
+    architecture:
+      'Full-stack Laravel application with RESTful IoT ingestion endpoints, Tailwind dark-mode UI, Alpine.js telemetry polling, and integration with ESP32/DHT22 sensor hardware.',
     techStack: ['Laravel', 'PHP', 'IoT', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
     category: 'Full-Stack',
     liveUrl: 'https://azlan-sys.github.io/AI-Powered-Smart-Camera-Dry-Box/',
@@ -103,10 +167,37 @@ export const projectsData = [
   {
     id: 3,
     title: 'StellarShop',
+    tagline: 'Immersive Next-Gen E-Commerce with Augmented Reality',
+    role: 'Full-Stack Developer',
+    year: '2023',
     description:
       'E-commerce platform with AR product previews, personalized recommendations, and a seamless checkout experience.',
     longDescription:
       'Modern e-commerce solution with augmented reality product visualization, AI-driven recommendations, and optimized conversion funnels.',
+    overview:
+      'StellarShop bridges the gap between digital shopping and physical experience. Customers can inspect 3D photorealistic product models in their own space using WebXR/Three.js, receive personalized item suggestions, and complete transactions through Stripe.',
+    highlights: [
+      '3D WebXR & Three.js Viewers',
+      'Stripe Payment Gateway',
+      'AI Recommendation Engine',
+      'Optimized 1-Click Checkout',
+    ],
+    keyFeatures: [
+      {
+        title: 'Augmented Reality Previews',
+        desc: 'Interactive 3D viewport allowing users to rotate, scale, and preview products directly in their browser using Three.js.',
+      },
+      {
+        title: 'Personalized Recommendations',
+        desc: 'Machine learning suggestions based on user browsing history and basket analysis.',
+      },
+      {
+        title: 'Seamless Stripe Checkout',
+        desc: 'PCI-compliant checkout workflow with real-time inventory validation and order tracking.',
+      },
+    ],
+    architecture:
+      'React frontend utilizing Three.js and Framer Motion for rich graphics, backed by Express, MongoDB, and Redis caching for sub-50ms catalog lookups.',
     techStack: ['React', 'Stripe', 'Express', 'MongoDB', 'Three.js'],
     category: 'Full-Stack',
     liveUrl: '#',
@@ -117,10 +208,37 @@ export const projectsData = [
   {
     id: 4,
     title: 'CodeForge',
+    tagline: 'Real-Time Collaborative Cloud IDE & AI Pair Programmer',
+    role: 'Frontend Architect',
+    year: '2023',
     description:
       'Collaborative code editor with real-time pair programming, built-in terminal, and AI code completion.',
     longDescription:
       'Browser-based IDE supporting real-time collaboration, integrated terminal, Git workflows, and AI-powered code suggestions.',
+    overview:
+      'CodeForge empowers developer teams to collaborate remotely with zero latency. It combines Monaco Editor, WebRTC peer data channels, and sandboxed Docker containers for instant multi-user code editing and execution.',
+    highlights: [
+      'Multi-Cursor Collaboration',
+      'WebRTC P2P Sync',
+      'Monaco Editor Integration',
+      'AI Code Autocomplete',
+    ],
+    keyFeatures: [
+      {
+        title: 'Live Multi-Cursor Pair Programming',
+        desc: 'Real-time shared state using Operational Transformation (OT) and WebRTC for conflict-free concurrent editing.',
+      },
+      {
+        title: 'In-Browser Terminal & Execution',
+        desc: 'Execute code in secure containerized sandboxes with live stdout/stderr streaming.',
+      },
+      {
+        title: 'AI Code Assistant',
+        desc: 'Context-aware code completion, refactoring suggestions, and inline documentation lookups.',
+      },
+    ],
+    architecture:
+      'React with Monaco Editor, WebRTC, Dockerized microservices, and Node.js WebSocket orchestration.',
     techStack: ['React', 'WebRTC', 'Node.js', 'Docker', 'Monaco Editor'],
     category: 'Frontend',
     liveUrl: '#',
@@ -131,10 +249,37 @@ export const projectsData = [
   {
     id: 5,
     title: 'CloudNest API',
+    tagline: 'High-Throughput Microservice API Gateway & Infrastructure',
+    role: 'Backend Engineer',
+    year: '2023',
     description:
       'Scalable REST API with auto-scaling, rate limiting, comprehensive documentation, and 99.9% uptime SLA.',
     longDescription:
       'Production-ready API infrastructure with automatic horizontal scaling, intelligent rate limiting, and interactive API documentation.',
+    overview:
+      'CloudNest API serves as a unified backend gateway capable of handling 50,000+ requests per second. Built for mission-critical enterprise workloads with token-bucket rate limiting, structured logging, and distributed tracing.',
+    highlights: [
+      '50K+ Req/sec Throughput',
+      'Token-Bucket Rate Limiter',
+      'Distributed Caching',
+      'Automated OpenAPI Docs',
+    ],
+    keyFeatures: [
+      {
+        title: 'Intelligent Rate Limiting',
+        desc: 'Redis-backed token-bucket algorithms preventing abuse while accommodating burst traffic.',
+      },
+      {
+        title: 'Horizontal Auto-Scaling',
+        desc: 'Containerized Docker microservices orchestrated for elastic scaling under high load spikes.',
+      },
+      {
+        title: 'Comprehensive Observability',
+        desc: 'Full Prometheus and Grafana telemetry metrics with structured JSON logging.',
+      },
+    ],
+    architecture:
+      'Node.js & Express clustered backend with Redis caching, PostgreSQL relational database, and Dockerized deployment.',
     techStack: ['Node.js', 'Express', 'PostgreSQL', 'Redis', 'Docker'],
     category: 'Backend',
     liveUrl: '#',
@@ -145,10 +290,37 @@ export const projectsData = [
   {
     id: 6,
     title: 'PixelVault',
+    tagline: 'AI Computer Vision Digital Asset & Media Management',
+    role: 'Full-Stack Developer',
+    year: '2022',
     description:
       'AI-powered image management platform with smart tagging, advanced search, and real-time collaboration.',
     longDescription:
       'Digital asset management solution leveraging computer vision for auto-tagging, natural language search, and team collaboration features.',
+    overview:
+      'PixelVault solves the challenge of indexing millions of creative assets. By utilizing computer vision and embeddings, users can search images using natural language concepts rather than manual tags.',
+    highlights: [
+      'Semantic Vector Search',
+      'Automatic AI Auto-Tagging',
+      'AWS S3 Smart Storage',
+      'GraphQL Query API',
+    ],
+    keyFeatures: [
+      {
+        title: 'Computer Vision Auto-Tagging',
+        desc: 'Extracts color palettes, objects, text (OCR), and visual styles automatically on upload.',
+      },
+      {
+        title: 'Natural Language Search',
+        desc: 'Vector embeddings enable finding photos via descriptive queries like "sunset over mountain lake".',
+      },
+      {
+        title: 'Cloud Media Pipeline',
+        desc: 'Automated thumbnail generation, format transcoding (WebP/AVIF), and CDN delivery.',
+      },
+    ],
+    architecture:
+      'Next.js frontend with Python/TensorFlow inference backend, AWS S3 storage, and GraphQL API layer.',
     techStack: ['Next.js', 'Python', 'TensorFlow', 'AWS S3', 'GraphQL'],
     category: 'Full-Stack',
     liveUrl: '#',

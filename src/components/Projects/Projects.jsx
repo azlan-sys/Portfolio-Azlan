@@ -4,12 +4,14 @@ import { projectsData } from '../../data/portfolioData';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionTitle from '../common/SectionTitle';
 import ProjectCard from './ProjectCard';
+import ProjectModal from './ProjectModal';
 import './Projects.css';
 
 const FILTERS = ['All', 'Full-Stack', 'Frontend', 'Backend'];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects =
     activeFilter === 'All'
@@ -49,13 +51,24 @@ export default function Projects() {
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
                 <ScrollReveal>
-                  <ProjectCard project={project} />
+                  <ProjectCard
+                    project={project}
+                    onOpenModal={(p) => setSelectedProject(p)}
+                  />
                 </ScrollReveal>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {/* Interactive Case Study Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   );
 }

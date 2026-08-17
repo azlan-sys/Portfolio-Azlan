@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub, FaArrowRight } from 'react-icons/fa';
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, onOpenModal }) {
   const cardRef = useRef(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
 
@@ -22,15 +22,24 @@ export default function ProjectCard({ project }) {
     setTilt({ rotateX: 0, rotateY: 0 });
   };
 
+  const handleCardClick = () => {
+    if (onOpenModal) {
+      onOpenModal(project);
+    }
+  };
+
+  const hexRgb = hexToRgb(project.color);
+
   return (
     <div
       ref={cardRef}
       className="project-card"
       data-cursor="pointer"
+      onClick={handleCardClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        border: `1px solid rgba(${hexToRgb(project.color)}, 0.15)`,
+        border: `1px solid rgba(${hexRgb}, 0.15)`,
       }}
     >
       <div
@@ -50,7 +59,11 @@ export default function ProjectCard({ project }) {
           {project.video ? (
             <video
               className="project-card__media"
-              src={project.video.startsWith('http') ? project.video : `${import.meta.env.BASE_URL}${project.video.replace(/^\//, '')}`}
+              src={
+                project.video.startsWith('http')
+                  ? project.video
+                  : `${import.meta.env.BASE_URL}${project.video.replace(/^\//, '')}`
+              }
               autoPlay
               loop
               muted
@@ -60,12 +73,27 @@ export default function ProjectCard({ project }) {
           ) : project.image ? (
             <img
               className="project-card__media"
-              src={project.image.startsWith('http') ? project.image : `${import.meta.env.BASE_URL}${project.image.replace(/^\//, '')}`}
+              src={
+                project.image.startsWith('http')
+                  ? project.image
+                  : `${import.meta.env.BASE_URL}${project.image.replace(/^\//, '')}`
+              }
               alt={project.title}
             />
           ) : (
             <div className="project-card__icon">&lt;/&gt;</div>
           )}
+
+          {/* Floating Case Study Badge */}
+          <div
+            className="project-card__case-study-badge"
+            style={{
+              borderColor: `rgba(${hexRgb}, 0.4)`,
+              color: project.color,
+            }}
+          >
+            <span>Case Study</span> ↗
+          </div>
         </div>
 
         {/* Body */}
@@ -84,12 +112,25 @@ export default function ProjectCard({ project }) {
 
           {/* Actions */}
           <div className="project-card__actions">
+            <button
+              type="button"
+              className="project-card__link project-card__details-btn"
+              style={{ color: project.color }}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onOpenModal) onOpenModal(project);
+              }}
+            >
+              Details <FaArrowRight style={{ fontSize: '0.75rem' }} />
+            </button>
+
             {project.liveUrl && project.liveUrl !== '#' && (
               <a
                 href={project.liveUrl}
                 className="project-card__link"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
               >
                 <FaExternalLinkAlt /> Live Demo
               </a>
@@ -100,16 +141,11 @@ export default function ProjectCard({ project }) {
                 className="project-card__link"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
               >
-                <FaGithub /> Source Code
+                <FaGithub /> Code
               </a>
             )}
-            {(!project.liveUrl || project.liveUrl === '#') &&
-              (!project.githubUrl || project.githubUrl === '#') && (
-                <span className="project-card__link project-card__link--disabled" style={{ opacity: 0.5, cursor: 'default' }}>
-                  <FaGithub /> In Development
-                </span>
-              )}
           </div>
         </div>
       </div>

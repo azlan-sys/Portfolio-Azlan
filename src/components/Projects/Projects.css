@@ -169,9 +169,38 @@
   font-weight: var(--fw-medium);
 }
 
+/* Case Study Floating Badge */
+.project-card__case-study-badge {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 2;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  padding: 4px 10px;
+  background: rgba(11, 13, 28, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.85;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.project-card:hover .project-card__case-study-badge {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(11, 13, 28, 0.95);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
 /* --- Action Buttons --- */
 .project-card__actions {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-md);
 }
 
@@ -182,12 +211,24 @@
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
   color: var(--text-muted);
-  transition: color var(--duration-fast) var(--ease-out);
+  transition: all var(--duration-fast) var(--ease-out);
   padding: var(--space-xs) 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .project-card__link:hover {
-  color: var(--accent-cyan);
+  color: var(--text-primary);
+}
+
+.project-card__details-btn {
+  font-weight: var(--fw-semibold);
+}
+
+.project-card__details-btn:hover {
+  transform: translateX(3px);
 }
 
 .project-card__link svg {
