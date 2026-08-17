@@ -172,38 +172,43 @@ export const projectsData = [
     year: '2024',
     image: '/images/hiv-icu-ann.jpg',
     description:
-      'Artificial Neural Network (ANN) deep learning system predicting ICU admission risk in immunocompromised HIV patients using 11 clinical biomarkers and SHAP explainability.',
+      'Artificial Neural Network (ANN) deep learning system predicting ICU admission risk in immunocompromised HIV patients with 0.961 ROC-AUC and SHAP explainability.',
     longDescription:
-      'A clinical deep learning model utilizing multi-layer Artificial Neural Networks (ANN) and Explainable AI (SHAP) to forecast early ICU admission risk in HIV patients by evaluating viral load, CD4+ count, respiratory failure, and opportunistic infections.',
+      'A clinical deep learning model utilizing multi-layer Artificial Neural Networks (11→8→5→1 topology) and Explainable AI (SHAP) to forecast early ICU admission risk in HIV patients by evaluating viral load, CD4+ count, respiratory failure, and opportunistic infections.',
     overview:
-      'Traditional critical care scoring tools often fail to account for the complex pathophysiology and opportunistic infection profile of HIV patients. This project engineered a multi-layer Artificial Neural Network (ANN) trained on comprehensive clinical records (including Baseline CD4+ count, Viral Load, PCP, and organ-specific opportunistic infections) to provide high-precision early ICU admission risk probabilities alongside SHAP-based feature attribution for clinical decision support.',
+      'Traditional critical care scoring tools often fail to account for the complex pathophysiology and opportunistic infection profile of HIV patients. This project engineered a multi-layer Artificial Neural Network (ANN) trained on comprehensive clinical records (including Baseline CD4+ count, Viral Load, PCP, and organ-specific opportunistic infections). The model achieved top-tier predictive performance with a ROC-AUC of 0.961 and PR-AUC of 0.895, providing high-precision early ICU admission risk probabilities (from 7% low risk up to 93% high risk) alongside SHAP-based clinical feature attribution.',
     highlights: [
-      'Multi-Layer ANN Architecture',
-      'SHAP Feature Attribution (XAI)',
+      'ROC-AUC 0.961 | PR-AUC 0.895',
+      'Multi-Layer ANN (11 → 8 → 5 → 1)',
+      'SHAP Explainability (XAI)',
       '11 Multi-Modal Clinical Biomarkers',
-      'Top Risk Factor: Respiratory Failure (+1.74 SHAP)',
-      'Early Critical Care Triage Probability',
+      'Top Driver: Respiratory Failure (+1.74 SHAP)',
+      'High-Risk (93%) vs Low-Risk (7%) Triage',
     ],
     keyFeatures: [
       {
-        title: 'Multi-Layer Neural Network (ANN)',
-        desc: 'Deep multi-layer perceptron architecture designed with non-linear activations to model intricate, non-linear interactions across immunocompromised clinical indicators.',
+        title: 'Multi-Layer Neural Network (11 → 8 → 5 → 1)',
+        desc: 'Deep architecture featuring an 11-node input layer, 8-node hidden layer 1, 5-node hidden layer 2, and a calibrated single-node risk output layer with non-linear activations.',
       },
       {
-        title: 'Explainable AI with SHAP Values',
+        title: 'Top-Tier Validation (0.961 ROC-AUC)',
+        desc: 'Delivers exceptional discriminative power in predicting critical care needs, achieving a 0.961 ROC-AUC and 0.895 PR-AUC on clinical test benchmarks.',
+      },
+      {
+        title: 'SHAP Explainability & Risk Attribution',
         desc: 'Empowers clinicians with transparent model interpretability—identifying Respiratory Failure (+1.74 SHAP impact) and Multiple Respiratory OIs (+1.14 SHAP impact) as primary ICU drivers.',
       },
       {
         title: '11 Multi-Modal Clinical Biomarkers',
-        desc: 'Integrates Baseline CD4+ cell count, Baseline Viral Load, PCP, AIDS-defining cancers, CNS infections, MAC, and Cardiovascular comorbidities.',
+        desc: 'Ingests normalized Continuous (Viral Load, CD4 Count) and Binary variables (PCP, AIDS Cancers, Cardiovascular, CNS OIs, MAC, Unexplained Infections).',
       },
       {
-        title: 'Proactive Critical Care Scoring',
-        desc: 'Outputs a calibrated ICU admission risk probability (0.0 – 1.0) to facilitate early triage intervention and prevent acute respiratory collapse.',
+        title: 'High vs. Low Risk Clinical Benchmarks',
+        desc: 'Accurately differentiates critical cases (93% ICU risk with low CD4 and respiratory failure) from stable cohorts (7% ICU risk with high CD4 and zero respiratory symptoms).',
       },
     ],
     architecture:
-      'Constructed with Python, PyTorch/TensorFlow, Scikit-Learn, and SHAP for preprocessing, class imbalance handling, training, cross-validation, and clinical interpretability analysis.',
+      'Constructed with Python, PyTorch/TensorFlow, Scikit-Learn, and SHAP for preprocessing, min-max normalization, class imbalance mitigation, 11-8-5-1 ANN training, and clinical interpretability analysis.',
     techStack: [
       'Python',
       'PyTorch',
@@ -211,6 +216,7 @@ export const projectsData = [
       'SHAP (XAI)',
       'Scikit-Learn',
       'Pandas',
+      'ROC-AUC (0.961)',
     ],
     category: 'AI/ML',
     liveUrl: '#',
