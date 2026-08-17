@@ -88,17 +88,17 @@ export const projectsData = [
   },
   {
     id: 2,
-    title: 'QuantumDash',
+    title: 'AI-Powered Smart Camera Dry Box',
     description:
-      'Analytics dashboard with real-time data visualization, customizable widgets, and predictive insights powered by machine learning.',
+      'Smart IoT & AI-driven dry box monitoring system for camera equipment with real-time humidity tracking, predictive silica replacement AI, and automated alerts.',
     longDescription:
-      'Enterprise-grade analytics dashboard featuring live data streams, drag-and-drop widget customization, and ML-powered trend predictions.',
-    techStack: ['Next.js', 'TypeScript', 'D3.js', 'Python', 'PostgreSQL'],
+      'An intelligent IoT environmental control and monitoring platform for camera gear. Features live telemetry sensor tracking, AI-powered silica replacement prediction, automated humidity alerts, and onboarding setup wizard.',
+    techStack: ['Laravel', 'PHP', 'IoT', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
     category: 'Full-Stack',
-    liveUrl: '#',
-    githubUrl: '#',
+    liveUrl: 'https://azlan-sys.github.io/AI-Powered-Smart-Camera-Dry-Box/',
+    githubUrl: 'https://github.com/azlan-sys/AI-Powered-Smart-Camera-Dry-Box.git',
     featured: true,
-    color: '#a855f7',
+    color: '#ff7a29',
   },
   {
     id: 3,
