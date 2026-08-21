@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaArrowRight, FaCheck, FaEnvelope, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaArrowRight, FaCheck } from 'react-icons/fa';
 import { personalInfo } from '../../data/portfolioData';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionTitle from '../common/SectionTitle';
@@ -9,55 +9,24 @@ import './Contact.css';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-  const [sentName, setSentName] = useState('');
+  const [isSent, setIsSent] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('sent') === 'true') {
+        setIsSent(true);
+      }
+    }
+  }, []);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const getMailtoLink = () => {
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${form.name || 'Visitor'}`);
-    const body = encodeURIComponent(
-      `Hi Azlan,\n\n${form.message}\n\n---\nFrom: ${form.name}\nEmail: ${form.email}`
-    );
-    return `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
-  };
-
-  const getGmailWebLink = () => {
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${sentName || form.name || 'Visitor'}`);
-    const body = encodeURIComponent(
-      `Hi Azlan,\n\n${form.message}\n\n---\nFrom: ${form.name || sentName}\nEmail: ${form.email}`
-    );
-    return `https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}&su=${subject}&body=${body}`;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSentName(form.name);
-
-    // 1. Trigger user's default email client with pre-filled content
-    window.location.href = getMailtoLink();
-
-    // 2. Also try background dispatch to FormSubmit
-    try {
-      fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          message: form.message,
-          _subject: `New Portfolio Message from ${form.name} (${form.email})`,
-          _captcha: 'false',
-        }),
-      }).catch(() => {});
-    } catch {
-      // Ignore background errors
-    }
-
-    setSubmitted(true);
-  };
+  const nextUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}${window.location.pathname}?sent=true#contact`
+    : 'https://azlan-sys.github.io/Portfolio-Azlan/?sent=true#contact';
 
   return (
     <section id="contact" className="section contact">
@@ -72,9 +41,9 @@ export default function Contact() {
                 Let&rsquo;s create something amazing together
               </h3>
               <p className="contact__text">
-                I&rsquo;m always open to discussing new projects, creative ideas,
-                or opportunities to be part of your vision. Drop me a line and
-                let&rsquo;s talk!
+                I&rsquo;m always open to discussing new projects, internship opportunities,
+                full-time roles, or creative collaborations. Leave your message below and
+                it will be delivered straight to my email!
               </p>
 
               <div className="contact__details">
@@ -117,21 +86,64 @@ export default function Contact() {
             </div>
           </ScrollReveal>
 
-          {/* Right Column — Form */}
+          {/* Right Column — Automatic Email Delivery Form */}
           <ScrollReveal direction="right">
             <div className="contact__form-wrapper">
               <div className="contact__form-glow" aria-hidden="true" />
 
               <AnimatePresence mode="wait">
-                {!submitted ? (
+                {isSent ? (
+                  <motion.div
+                    key="sent"
+                    className="contact__success"
+                    initial={{ opacity: 0, scale: 0.88 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="contact__success-icon">
+                      <FaCheck />
+                    </div>
+                    <h4 className="contact__success-title">Message Delivered!</h4>
+                    <p className="contact__success-text">
+                      Thank you for reaching out! Your message has been sent directly to{' '}
+                      <strong>{personalInfo.email}</strong>. I will get back to you shortly.
+                    </p>
+                    <button
+                      type="button"
+                      className="contact__resend-btn"
+                      onClick={() => {
+                        setIsSent(false);
+                        if (typeof window !== 'undefined') {
+                          const url = new URL(window.location.href);
+                          url.searchParams.delete('sent');
+                          window.history.replaceState({}, '', url.pathname + url.hash);
+                        }
+                      }}
+                      data-cursor="pointer"
+                    >
+                      Send Another Message
+                    </button>
+                  </motion.div>
+                ) : (
                   <motion.form
                     key="form"
+                    action={`https://formsubmit.co/${personalInfo.email}`}
+                    method="POST"
                     className="contact__form"
-                    onSubmit={handleSubmit}
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
                   >
+                    {/* FormSubmit Backend Configuration */}
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_next" value={nextUrl} />
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value="🚀 New Portfolio Message for Muhammad Azlan"
+                    />
+                    <input type="hidden" name="_template" value="table" />
+
                     {/* Name */}
                     <div className="contact__field">
                       <input
@@ -168,78 +180,22 @@ export default function Contact() {
                         placeholder=" "
                         value={form.message}
                         onChange={handleChange}
+                        rows={4}
                         required
                       />
                       <label className="contact__label">Your Message</label>
                     </div>
 
-                    {/* Submit Buttons */}
-                    <div className="contact__btn-group">
-                      <button
-                        type="submit"
-                        className="contact__submit"
-                        data-cursor="pointer"
-                      >
-                        Send Message
-                        <FaArrowRight className="contact__submit-arrow" />
-                      </button>
-
-                      <a
-                        href={getGmailWebLink()}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="contact__gmail-btn"
-                        data-cursor="pointer"
-                      >
-                        <FaEnvelope /> Open in Gmail Web
-                      </a>
-                    </div>
-                  </motion.form>
-                ) : (
-                  <motion.div
-                    key="success"
-                    className="contact__success"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <div className="contact__success-icon">
-                      <FaCheck />
-                    </div>
-                    <h4 className="contact__success-title">Opening Email Client...</h4>
-                    <p className="contact__success-text">
-                      Your draft is prepared for <strong>{personalInfo.email}</strong>. If your email client didn&rsquo;t open automatically, use the buttons below:
-                    </p>
-
-                    <div className="contact__success-actions">
-                      <a
-                        href={getGmailWebLink()}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="contact__action-btn contact__action-btn--primary"
-                        data-cursor="pointer"
-                      >
-                        <FaExternalLinkAlt /> Open in Gmail Web
-                      </a>
-
-                      <a
-                        href={getMailtoLink()}
-                        className="contact__action-btn contact__action-btn--secondary"
-                        data-cursor="pointer"
-                      >
-                        <FaEnvelope /> Open Default Mail App
-                      </a>
-                    </div>
-
+                    {/* Submit Button */}
                     <button
-                      type="button"
-                      className="contact__resend-btn"
-                      onClick={() => setSubmitted(false)}
+                      type="submit"
+                      className="contact__submit"
                       data-cursor="pointer"
                     >
-                      Send Another Message
+                      Send Message
+                      <FaArrowRight className="contact__submit-arrow" />
                     </button>
-                  </motion.div>
+                  </motion.form>
                 )}
               </AnimatePresence>
             </div>
