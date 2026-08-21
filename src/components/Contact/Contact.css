@@ -259,23 +259,96 @@
   }
 }
 
-.contact__resend-btn {
-  background: rgba(var(--accent-cyan-rgb), 0.1);
+/* --- Button Group --- */
+.contact__btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.contact__gmail-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px var(--space-xl);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(var(--accent-cyan-rgb), 0.3);
+  border-radius: var(--radius-md);
   color: var(--accent-cyan);
-  padding: 8px 20px;
-  border-radius: var(--radius-full);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  cursor: pointer;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
   transition: all var(--duration-fast) var(--ease-out);
 }
 
-.contact__resend-btn:hover {
-  background: rgba(var(--accent-cyan-rgb), 0.2);
+.contact__gmail-btn:hover {
+  background: rgba(var(--accent-cyan-rgb), 0.15);
   border-color: var(--accent-cyan);
-  box-shadow: var(--glow-cyan);
+  color: #fff;
   transform: translateY(-2px);
+}
+
+.contact__success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 320px;
+  margin: var(--space-xs) 0;
+}
+
+.contact__action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.contact__action-btn--primary {
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(var(--accent-cyan-rgb), 0.3);
+}
+
+.contact__action-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--accent-cyan-rgb), 0.5);
+}
+
+.contact__action-btn--secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-secondary);
+}
+
+.contact__action-btn--secondary:hover {
+  color: #fff;
+  border-color: rgba(var(--accent-cyan-rgb), 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.contact__resend-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: var(--space-xs);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.contact__resend-btn:hover {
+  color: var(--accent-cyan);
 }
 
 /* --- Responsive --- */

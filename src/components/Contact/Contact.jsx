@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaArrowRight, FaCheck, FaSpinner } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaArrowRight, FaCheck, FaEnvelope, FaExternalLinkAlt } from 'react-icons/fa';
 import { personalInfo } from '../../data/portfolioData';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionTitle from '../common/SectionTitle';
@@ -9,54 +9,54 @@ import './Contact.css';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [isActivationPending, setIsActivationPending] = useState(false);
+  const [sentName, setSentName] = useState('');
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setIsActivationPending(false);
+  const getMailtoLink = () => {
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${form.name || 'Visitor'}`);
+    const body = encodeURIComponent(
+      `Hi Azlan,\n\n${form.message}\n\n---\nFrom: ${form.name}\nEmail: ${form.email}`
+    );
+    return `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
+  };
 
+  const getGmailWebLink = () => {
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${sentName || form.name || 'Visitor'}`);
+    const body = encodeURIComponent(
+      `Hi Azlan,\n\n${form.message}\n\n---\nFrom: ${form.name || sentName}\nEmail: ${form.email}`
+    );
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}&su=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSentName(form.name);
+
+    // 1. Trigger user's default email client with pre-filled content
+    window.location.href = getMailtoLink();
+
+    // 2. Also try background dispatch to FormSubmit
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
+      fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
           message: form.message,
           _subject: `New Portfolio Message from ${form.name} (${form.email})`,
           _captcha: 'false',
-          _template: 'table',
         }),
-      });
-
-      const data = await response.json();
-      
-      // Check if FormSubmit requires 1-time email activation
-      if (data.message && data.message.toLowerCase().includes('activation')) {
-        setIsActivationPending(true);
-        setSubmitted(true);
-      } else if (response.ok || data.success === 'true' || data.success === true) {
-        setSubmitted(true);
-        setForm({ name: '', email: '', message: '' });
-      } else {
-        setSubmitted(true);
-      }
-    } catch (err) {
-      console.warn('FormSubmit AJAX response:', err);
-      setSubmitted(true);
-    } finally {
-      setIsSubmitting(false);
+      }).catch(() => {});
+    } catch {
+      // Ignore background errors
     }
+
+    setSubmitted(true);
   };
 
   return (
@@ -173,25 +173,27 @@ export default function Contact() {
                       <label className="contact__label">Your Message</label>
                     </div>
 
-                    {/* Submit */}
-                    <button
-                      type="submit"
-                      className="contact__submit"
-                      disabled={isSubmitting}
-                      data-cursor="pointer"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <FaSpinner className="contact__spinner" />
-                          Sending Message...
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <FaArrowRight className="contact__submit-arrow" />
-                        </>
-                      )}
-                    </button>
+                    {/* Submit Buttons */}
+                    <div className="contact__btn-group">
+                      <button
+                        type="submit"
+                        className="contact__submit"
+                        data-cursor="pointer"
+                      >
+                        Send Message
+                        <FaArrowRight className="contact__submit-arrow" />
+                      </button>
+
+                      <a
+                        href={getGmailWebLink()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact__gmail-btn"
+                        data-cursor="pointer"
+                      >
+                        <FaEnvelope /> Open in Gmail Web
+                      </a>
+                    </div>
                   </motion.form>
                 ) : (
                   <motion.div
@@ -204,23 +206,31 @@ export default function Contact() {
                     <div className="contact__success-icon">
                       <FaCheck />
                     </div>
-                    {isActivationPending ? (
-                      <>
-                        <h4 className="contact__success-title">1-Click Activation Needed!</h4>
-                        <p className="contact__success-text">
-                          FormSubmit has sent a 1-time <strong>&quot;Activate Form&quot;</strong> confirmation email to{' '}
-                          <strong>{personalInfo.email}</strong>. Please check your inbox (or Spam folder) and click the link to activate.
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <h4 className="contact__success-title">Message Sent!</h4>
-                        <p className="contact__success-text">
-                          Thank you for reaching out! Your message has been sent to{' '}
-                          <strong>{personalInfo.email}</strong>. I will get back to you shortly.
-                        </p>
-                      </>
-                    )}
+                    <h4 className="contact__success-title">Opening Email Client...</h4>
+                    <p className="contact__success-text">
+                      Your draft is prepared for <strong>{personalInfo.email}</strong>. If your email client didn&rsquo;t open automatically, use the buttons below:
+                    </p>
+
+                    <div className="contact__success-actions">
+                      <a
+                        href={getGmailWebLink()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact__action-btn contact__action-btn--primary"
+                        data-cursor="pointer"
+                      >
+                        <FaExternalLinkAlt /> Open in Gmail Web
+                      </a>
+
+                      <a
+                        href={getMailtoLink()}
+                        className="contact__action-btn contact__action-btn--secondary"
+                        data-cursor="pointer"
+                      >
+                        <FaEnvelope /> Open Default Mail App
+                      </a>
+                    </div>
+
                     <button
                       type="button"
                       className="contact__resend-btn"
