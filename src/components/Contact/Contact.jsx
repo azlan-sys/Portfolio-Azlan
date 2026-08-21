@@ -9,7 +9,7 @@ import SectionTitle from '../common/SectionTitle';
 import './Contact.css';
 
 // EmailJS Configuration
-const EMAILJS_SERVICE_ID = 'service_8mhrhqs';
+const EMAILJS_SERVICE_ID = 'service_5hg2frw';
 const EMAILJS_TEMPLATE_ID = 'template_1bh6xsb';
 const EMAILJS_PUBLIC_KEY = 'Z3lKKttogCcI_UNrU';
 
