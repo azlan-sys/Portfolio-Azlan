@@ -52,7 +52,7 @@ export const aboutData = {
     },
   ],
   stats: [
-    { label: 'Degree Standing', value: 'Final-Yr', isText: true },
+    { label: 'UiTM CGPA', value: 3.49, suffix: '', isDecimal: true },
     { label: 'Core Projects Built', value: 6, suffix: '+' },
     { label: 'Leadership Roles', value: 4, suffix: '' },
     { label: 'Technical Skills', value: 15, suffix: '+' },
@@ -444,7 +444,7 @@ export const educationData = [
     degree: 'Bachelor in Information Systems (Hons.) Information Systems Engineering',
     period: 'Jul 2023 — Jan 2027',
     location: 'Kampus Jasin, Malacca, Malaysia',
-    grade: 'Final-Year Student',
+    grade: 'CGPA 3.49 (Final-Year)',
     description:
       'Pursuing a Bachelor of Information Systems (Hons.) in Information Systems Engineering. Gained hands-on experience in software development, mobile application development, IoT, database management, and system analysis through academic projects. Actively involved in student organizations and leadership activities, strengthening teamwork, project management, and communication skills.',
     skills: [

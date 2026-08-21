@@ -141,12 +141,12 @@
 }
 
 .experience__entry--left .experience__connector {
-  right: calc(50% - 40px + 6px);
+  right: 50%;
   left: auto;
 }
 
 .experience__entry--right .experience__connector {
-  left: calc(50% + 6px);
+  left: 50%;
   right: auto;
 }
 

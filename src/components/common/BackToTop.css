@@ -1,0 +1,66 @@
+/* ========================================
+   Floating Back To Top Button
+   ======================================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(11, 15, 36, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(var(--accent-cyan-rgb), 0.45);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 8000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
+              0 0 20px rgba(var(--accent-cyan-rgb), 0.25);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.back-to-top:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7),
+              0 0 30px rgba(var(--accent-cyan-rgb), 0.6);
+}
+
+.back-to-top__glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-cyan-rgb), 0.4) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.back-to-top__icon {
+  font-size: 1.45rem;
+  color: var(--accent-cyan);
+  transition: transform var(--duration-fast) var(--ease-spring),
+              color var(--duration-fast) var(--ease-out);
+}
+
+.back-to-top:hover .back-to-top__icon {
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 24px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .back-to-top__icon {
+    font-size: 1.25rem;
+  }
+}

@@ -13,9 +13,9 @@ import About from './components/About/About';
 import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
 import Experience from './components/Experience/Experience';
-import Testimonials from './components/Testimonials/Testimonials';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import BackToTop from './components/common/BackToTop';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,11 +62,12 @@ function App() {
             <div className="section-divider" />
             <Experience />
             <div className="section-divider" />
-            <Testimonials />
-            <div className="section-divider" />
             <Contact />
           </main>
           <Footer />
+
+          {/* Always Visible Floating Back To Top Button */}
+          <BackToTop />
         </>
       )}
     </>
