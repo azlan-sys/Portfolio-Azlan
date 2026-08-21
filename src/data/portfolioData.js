@@ -17,7 +17,6 @@ export const personalInfo = {
   socials: {
     github: 'https://github.com/azlan-sys',
     linkedin: 'https://www.linkedin.com/in/azlanmuhd/',
-    twitter: '#',
   },
 };
 

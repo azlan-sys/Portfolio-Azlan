@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { HiArrowUp } from 'react-icons/hi';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { personalInfo, navLinks } from '../../data/portfolioData';
 import './Footer.css';
 
@@ -11,10 +10,6 @@ const Footer = () => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
-  }, []);
-
-  const handleBackToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   return (
@@ -75,16 +70,6 @@ const Footer = () => {
             >
               <FaLinkedin />
             </a>
-            <a
-              href={personalInfo.socials.twitter}
-              className="footer__social-icon"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-              data-cursor="pointer"
-            >
-              <FaTwitter />
-            </a>
           </div>
         </div>
 
@@ -94,14 +79,6 @@ const Footer = () => {
             © 2026 Azlan. Crafted with{' '}
             <span className="footer__copyright-star">✦</span> and React.
           </p>
-          <button
-            className="footer__back-to-top"
-            onClick={handleBackToTop}
-            aria-label="Back to top"
-            data-cursor="pointer"
-          >
-            <HiArrowUp />
-          </button>
         </div>
       </div>
     </footer>

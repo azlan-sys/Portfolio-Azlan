@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaTwitter, FaArrowRight, FaCheck } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaArrowRight, FaCheck } from 'react-icons/fa';
 import { personalInfo } from '../../data/portfolioData';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionTitle from '../common/SectionTitle';
@@ -68,15 +68,6 @@ export default function Contact() {
                   aria-label="LinkedIn"
                 >
                   <FaLinkedin />
-                </a>
-                <a
-                  href={personalInfo.socials.twitter}
-                  className="contact__social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter"
-                >
-                  <FaTwitter />
                 </a>
               </div>
             </div>
