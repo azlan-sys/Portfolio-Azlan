@@ -10,8 +10,8 @@ export const personalInfo = {
   tagline: 'Final-Year UiTM Student · Full-Stack Web, Mobile & IoT Developer',
   description:
     'Final-year Bachelor of Information Systems (Hons.) Information Systems Engineering student at Universiti Teknologi MARA (UiTM). Passionate about Information Systems, Business Analysis, Software Development, and Data Analytics. Currently seeking internship opportunities.',
-  email: 'azlan@example.com',
-  location: 'Jasin, Malacca / Kuala Lumpur, Malaysia',
+  email: 'azlanbinmuhd@gmail.com',
+  location: 'Pontian District, Johore, Malaysia',
   resumeUrl: '#',
   image: 'images/my-picture.png',
   socials: {
