@@ -2,10 +2,16 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
 import { FaGithub, FaLinkedin, FaArrowRight, FaCheck, FaSpinner } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 import { personalInfo } from '../../data/portfolioData';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionTitle from '../common/SectionTitle';
 import './Contact.css';
+
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_8mhrhqs';
+const EMAILJS_TEMPLATE_ID = 'template_1bh6xsb';
+const EMAILJS_PUBLIC_KEY = 'Z3lKKttogCcI_UNrU';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -22,35 +28,35 @@ export default function Contact() {
     setIsSubmitting(true);
     setErrorMessage('');
 
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          message: form.message,
-          _subject: `🚀 Portfolio Inquiry from ${form.name} (${form.email})`,
-          _captcha: 'false',
-          _template: 'table',
-        }),
-      });
+    const templateParams = {
+      name: form.name,
+      from_name: form.name,
+      email: form.email,
+      from_email: form.email,
+      reply_to: form.email,
+      message: form.message,
+      time: new Date().toLocaleString(),
+    };
 
-      const data = await response.json();
-      if (response.ok || data.success === 'true' || data.success === true) {
+    try {
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      if (response.status === 200 || response.text === 'OK') {
         setSubmitted(true);
         setForm({ name: '', email: '', message: '' });
       } else {
-        throw new Error(data.message || 'Failed to submit form');
+        throw new Error('Failed to send email via EmailJS');
       }
     } catch (err) {
-      console.warn('Submission fallback:', err);
-      // Even if network blips, show success confirmation
-      setSubmitted(true);
-      setForm({ name: '', email: '', message: '' });
+      console.error('EmailJS delivery error:', err);
+      setErrorMessage(
+        'Unable to send message right now. Please reach out directly to azlanbinmuhd@gmail.com'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -70,7 +76,7 @@ export default function Contact() {
               </h3>
               <p className="contact__text">
                 I&rsquo;m always open to discussing new projects, internship opportunities,
-                full-time roles, or creative collaborations. Drop me a line and
+                full-time roles, or creative collaborations. Leave your message below and
                 I will get back to you!
               </p>
 
@@ -114,7 +120,7 @@ export default function Contact() {
             </div>
           </ScrollReveal>
 
-          {/* Right Column — In-Place Auto Send Form */}
+          {/* Right Column — Form with Direct EmailJS Integration */}
           <ScrollReveal direction="right">
             <div className="contact__form-wrapper">
               <div className="contact__form-glow" aria-hidden="true" />
