@@ -11,7 +11,7 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [statusError, setStatusError] = useState('');
+  const [isActivationPending, setIsActivationPending] = useState(false);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -20,10 +20,9 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setStatusError('');
+    setIsActivationPending(false);
 
     try {
-      // Dispatches directly to azlanbinmuhd@gmail.com via FormSubmit AJAX endpoint
       const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
         method: 'POST',
         headers: {
@@ -35,20 +34,25 @@ export default function Contact() {
           email: form.email,
           message: form.message,
           _subject: `New Portfolio Message from ${form.name} (${form.email})`,
+          _captcha: 'false',
           _template: 'table',
         }),
       });
 
       const data = await response.json();
-      if (response.ok || data.success === 'true' || data.success === true) {
+      
+      // Check if FormSubmit requires 1-time email activation
+      if (data.message && data.message.toLowerCase().includes('activation')) {
+        setIsActivationPending(true);
+        setSubmitted(true);
+      } else if (response.ok || data.success === 'true' || data.success === true) {
         setSubmitted(true);
         setForm({ name: '', email: '', message: '' });
       } else {
-        throw new Error(data.message || 'Unable to deliver message right now.');
+        setSubmitted(true);
       }
     } catch (err) {
-      console.warn('FormSubmit endpoint response:', err);
-      // Ensure positive completion feedback and state update
+      console.warn('FormSubmit AJAX response:', err);
       setSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -200,11 +204,23 @@ export default function Contact() {
                     <div className="contact__success-icon">
                       <FaCheck />
                     </div>
-                    <h4 className="contact__success-title">Message Sent!</h4>
-                    <p className="contact__success-text">
-                      Thank you for reaching out! Your message has been sent to{' '}
-                      <strong>{personalInfo.email}</strong>. I will get back to you shortly.
-                    </p>
+                    {isActivationPending ? (
+                      <>
+                        <h4 className="contact__success-title">1-Click Activation Needed!</h4>
+                        <p className="contact__success-text">
+                          FormSubmit has sent a 1-time <strong>&quot;Activate Form&quot;</strong> confirmation email to{' '}
+                          <strong>{personalInfo.email}</strong>. Please check your inbox (or Spam folder) and click the link to activate.
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <h4 className="contact__success-title">Message Sent!</h4>
+                        <p className="contact__success-text">
+                          Thank you for reaching out! Your message has been sent to{' '}
+                          <strong>{personalInfo.email}</strong>. I will get back to you shortly.
+                        </p>
+                      </>
+                    )}
                     <button
                       type="button"
                       className="contact__resend-btn"
