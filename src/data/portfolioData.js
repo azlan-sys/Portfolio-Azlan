@@ -252,13 +252,13 @@ export const projectsData = [
   },
   {
     id: 4,
-    title: 'SafeCampus Mobile',
+    title: 'SafeCampus Mobile (Android App)',
     tagline: 'Crowdsourced Campus Incident Reporting & Real-Time Emergency Navigation',
     role: 'Android & Mobile Developer',
     year: '2026',
     image: '/images/safecampus.jpg',
     description:
-      'Native Android safety & incident reporting app with live Google Maps telemetry, GPS geocoding, and Firebase real-time synchronization.',
+      'Native Android incident reporting & emergency safety app for university students with live Google Maps telemetry, GPS reverse geocoding, and Firebase real-time sync.',
     longDescription:
       'A crowdsourced campus safety and emergency response mobile application designed for university students to report hazards, track active incidents on an interactive Google Map, and quickly reach emergency contact hubs.',
     overview:
