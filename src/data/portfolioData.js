@@ -52,7 +52,7 @@ export const aboutData = {
     },
   ],
   stats: [
-    { label: 'Matriculation CGPA', value: 3.62, suffix: '', isDecimal: true },
+    { label: 'Degree Standing', value: 'Final-Yr', isText: true },
     { label: 'Core Projects Built', value: 6, suffix: '+' },
     { label: 'Leadership Roles', value: 4, suffix: '' },
     { label: 'Technical Skills', value: 15, suffix: '+' },

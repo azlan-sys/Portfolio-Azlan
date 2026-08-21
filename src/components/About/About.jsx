@@ -41,7 +41,14 @@ function useAnimatedCounter(target, duration = 2000, startCounting = false, isDe
 function StatCard({ stat, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const count = useAnimatedCounter(stat.value, 2000, isInView, stat.isDecimal);
+  const count = useAnimatedCounter(
+    typeof stat.value === 'number' ? stat.value : 0,
+    2000,
+    isInView,
+    stat.isDecimal
+  );
+
+  const displayValue = stat.isText ? stat.value : count;
 
   return (
     <motion.div
@@ -52,7 +59,7 @@ function StatCard({ stat, index }) {
       transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="about__stat-value">
-        {count}
+        {displayValue}
         {stat.suffix && <span className="about__stat-suffix">{stat.suffix}</span>}
       </div>
       <div className="about__stat-label">{stat.label}</div>
