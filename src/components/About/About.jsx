@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { aboutData } from '../../data/portfolioData';
+import { personalInfo, aboutData } from '../../data/portfolioData';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionTitle from '../common/SectionTitle';
 import './About.css';
 
 /* ---- Animated Counter Hook ---- */
-function useAnimatedCounter(target, duration = 2000, startCounting = false) {
-  const [count, setCount] = useState(0);
+function useAnimatedCounter(target, duration = 2000, startCounting = false, isDecimal = false) {
+  const [count, setCount] = useState(isDecimal ? '0.00' : 0);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
@@ -20,15 +20,19 @@ function useAnimatedCounter(target, duration = 2000, startCounting = false) {
       const progress = Math.min((timestamp - startTime) / duration, 1);
       // ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
+      if (isDecimal) {
+        setCount((eased * target).toFixed(2));
+      } else {
+        setCount(Math.floor(eased * target));
+      }
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
-        setCount(target);
+        setCount(isDecimal ? target.toFixed(2) : target);
       }
     };
     requestAnimationFrame(step);
-  }, [target, duration, startCounting]);
+  }, [target, duration, startCounting, isDecimal]);
 
   return count;
 }
@@ -37,7 +41,7 @@ function useAnimatedCounter(target, duration = 2000, startCounting = false) {
 function StatCard({ stat, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const count = useAnimatedCounter(stat.value, 2000, isInView);
+  const count = useAnimatedCounter(stat.value, 2000, isInView, stat.isDecimal);
 
   return (
     <motion.div
@@ -49,7 +53,7 @@ function StatCard({ stat, index }) {
     >
       <div className="about__stat-value">
         {count}
-        <span className="about__stat-suffix">+</span>
+        {stat.suffix && <span className="about__stat-suffix">{stat.suffix}</span>}
       </div>
       <div className="about__stat-label">{stat.label}</div>
     </motion.div>
@@ -58,29 +62,76 @@ function StatCard({ stat, index }) {
 
 /* ---- About Section ---- */
 export default function About() {
+  const imageSrc = `${import.meta.env.BASE_URL}${aboutData.image.replace(/^\//, '')}`;
+
   return (
     <section id="about" className="section about">
       <div className="container">
         <SectionTitle title="About Me" subtitle="Get to know me" />
 
-        <div className="about__content">
-          {/* Bio Column */}
-          <div className="about__bio">
-            {aboutData.bio.map((paragraph, i) => (
-              <ScrollReveal key={i} delay={i * 0.15}>
-                <p className="about__bio-text">{paragraph}</p>
-              </ScrollReveal>
-            ))}
-          </div>
+        <div className="about__grid">
+          {/* Left Column: Portrait Showcase */}
+          <ScrollReveal direction="left">
+            <div className="about__image-wrapper">
+              <div className="about__image-glow" aria-hidden="true" />
+              <div className="about__image-frame">
+                <img
+                  src={imageSrc}
+                  alt={personalInfo.name}
+                  className="about__portrait"
+                  loading="lazy"
+                />
+                
+                {/* Floating Status Badge */}
+                <div className="about__status-pill">
+                  <span className="about__status-dot" />
+                  <span>Seeking Internship</span>
+                </div>
 
-          {/* Decorative Divider */}
-          <div className="about__divider" aria-hidden="true" />
+                {/* Floating Academic Badge */}
+                <div className="about__floating-badge">
+                  <span className="about__badge-icon">🎓</span>
+                  <div>
+                    <div className="about__badge-title">UiTM Final-Year</div>
+                    <div className="about__badge-sub">Information Systems</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
 
-          {/* Stats Column */}
-          <div className="about__stats">
-            {aboutData.stats.map((stat, i) => (
-              <StatCard key={stat.label} stat={stat} index={i} />
-            ))}
+          {/* Right Column: Bio, Focus Areas & Stats */}
+          <div className="about__details">
+            <ScrollReveal delay={0.1}>
+              <h3 className="about__headline">{aboutData.headline}</h3>
+            </ScrollReveal>
+
+            <div className="about__bio">
+              {aboutData.bio.map((paragraph, i) => (
+                <ScrollReveal key={i} delay={0.15 + i * 0.1}>
+                  <p className="about__bio-text">{paragraph}</p>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* Core Competency Cards */}
+            <ScrollReveal delay={0.35}>
+              <div className="about__focus-grid">
+                {aboutData.focusAreas.map((area) => (
+                  <div key={area.title} className="about__focus-card">
+                    <div className="about__focus-title">{area.title}</div>
+                    <div className="about__focus-desc">{area.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+
+            {/* Stats Row */}
+            <div className="about__stats">
+              {aboutData.stats.map((stat, i) => (
+                <StatCard key={stat.label} stat={stat} index={i} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

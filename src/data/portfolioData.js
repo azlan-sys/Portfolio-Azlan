@@ -4,68 +4,95 @@
 // Edit this file to update all your portfolio content.
 
 export const personalInfo = {
-  name: 'Azlan',
+  name: 'Muhammad Azlan',
   firstName: 'Azlan',
-  title: 'Full-Stack Developer',
-  tagline: 'Crafting Immersive Digital Experiences',
+  title: 'Information Systems Engineer & Developer',
+  tagline: 'Final-Year UiTM Student · Full-Stack Web, Mobile & IoT Developer',
   description:
-    'I design and build exceptional digital experiences that live at the intersection of creativity and technology. Passionate about turning complex problems into elegant, performant solutions.',
+    'Final-year Bachelor of Information Systems (Hons.) Information Systems Engineering student at Universiti Teknologi MARA (UiTM). Passionate about Information Systems, Business Analysis, Software Development, and Data Analytics. Currently seeking internship opportunities.',
   email: 'azlan@example.com',
-  location: 'Kuala Lumpur, Malaysia',
+  location: 'Jasin, Malacca / Kuala Lumpur, Malaysia',
   resumeUrl: '#',
+  image: 'images/my-picture.png',
   socials: {
-    github: 'https://github.com/azlan',
-    linkedin: 'https://linkedin.com/in/azlan',
-    twitter: 'https://twitter.com/azlan',
+    github: 'https://github.com/azlan-sys',
+    linkedin: 'https://www.linkedin.com/in/azlanmuhd/',
+    twitter: '#',
   },
 };
 
 export const aboutData = {
+  image: 'images/my-picture.png',
+  headline: 'Final-Year Information Systems Engineering Student at UiTM',
   bio: [
-    "I'm a passionate Full-Stack Developer with a love for creating beautiful, functional, and user-centered digital experiences.",
-    "With expertise spanning both frontend and backend technologies, I bring ideas to life through clean code and thoughtful design.",
-    "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.",
+    'I am a final-year Bachelor of Information Systems (Hons.) Information Systems Engineering student at Universiti Teknologi MARA (UiTM).',
+    'I am deeply passionate about Information Systems, Business Analysis, Software Development, and Data Analytics. Through academic and personal projects, I have developed solid, practical experience in web, mobile, and IoT systems using Laravel, PHP, JavaScript, MySQL, Flutter, and Android (Java).',
+    'Currently seeking internship opportunities to gain industry experience, collaborate on impactful engineering projects, and contribute to innovative technology solutions.',
+  ],
+  focusAreas: [
+    {
+      title: 'Information Systems',
+      desc: 'Enterprise workflows, requirements engineering & relational schema design.',
+      icon: 'FaDatabase',
+    },
+    {
+      title: 'Software & Web Development',
+      desc: 'Modern web applications built with Laravel, PHP, React, Tailwind & MySQL.',
+      icon: 'FaCode',
+    },
+    {
+      title: 'Mobile & IoT Systems',
+      desc: 'Native Android (Java), Flutter apps, and real-time ESP32 hardware telemetry.',
+      icon: 'FaMobileAlt',
+    },
+    {
+      title: 'Data Analytics & AI',
+      desc: 'Machine learning, Artificial Neural Networks (ANN), and Explainable AI (SHAP).',
+      icon: 'FaBrain',
+    },
   ],
   stats: [
-    { label: 'Years Experience', value: 5 },
-    { label: 'Projects Completed', value: 50 },
-    { label: 'Happy Clients', value: 30 },
-    { label: 'Open Source Contributions', value: 100 },
+    { label: 'Matriculation CGPA', value: 3.62, suffix: '', isDecimal: true },
+    { label: 'Core Projects Built', value: 6, suffix: '+' },
+    { label: 'Leadership Roles', value: 4, suffix: '' },
+    { label: 'Technical Skills', value: 15, suffix: '+' },
   ],
 };
 
 export const skillsData = [
   {
-    category: 'Frontend',
+    category: 'Software & Web',
     skills: [
-      { name: 'React / Next.js', level: 95, icon: 'SiReact' },
-      { name: 'TypeScript', level: 90, icon: 'SiTypescript' },
-      { name: 'JavaScript', level: 95, icon: 'SiJavascript' },
+      { name: 'Laravel', level: 92, icon: 'SiLaravel' },
+      { name: 'PHP', level: 90, icon: 'SiPhp' },
+      { name: 'JavaScript', level: 90, icon: 'SiJavascript' },
+      { name: 'React', level: 85, icon: 'SiReact' },
+      { name: 'MySQL', level: 90, icon: 'SiMysql' },
       { name: 'HTML / CSS', level: 95, icon: 'SiHtml5' },
-      { name: 'Three.js', level: 75, icon: 'SiThreedotjs' },
-      { name: 'Framer Motion', level: 85, icon: 'SiFramer' },
+      { name: 'Tailwind CSS', level: 92, icon: 'SiTailwindcss' },
+      { name: 'Alpine.js', level: 85, icon: 'SiAlpinelinux' },
     ],
   },
   {
-    category: 'Backend',
+    category: 'Mobile & IoT',
     skills: [
-      { name: 'Node.js', level: 90, icon: 'SiNodedotjs' },
-      { name: 'Python', level: 85, icon: 'SiPython' },
-      { name: 'Express', level: 88, icon: 'SiExpress' },
-      { name: 'PostgreSQL', level: 82, icon: 'SiPostgresql' },
-      { name: 'MongoDB', level: 85, icon: 'SiMongodb' },
-      { name: 'GraphQL', level: 78, icon: 'SiGraphql' },
+      { name: 'Android (Java)', level: 88, icon: 'SiAndroid' },
+      { name: 'Flutter', level: 80, icon: 'SiFlutter' },
+      { name: 'Firebase & Firestore', level: 88, icon: 'SiFirebase' },
+      { name: 'Google Maps SDK', level: 85, icon: 'SiGooglemaps' },
+      { name: 'IoT & ESP32 Telemetry', level: 85, icon: 'SiArduino' },
+      { name: 'REST APIs', level: 90, icon: 'SiPostman' },
     ],
   },
   {
-    category: 'Tools & DevOps',
+    category: 'Analytics & Engineering',
     skills: [
-      { name: 'Git / GitHub', level: 92, icon: 'SiGit' },
-      { name: 'Docker', level: 80, icon: 'SiDocker' },
-      { name: 'AWS', level: 75, icon: 'SiAmazonwebservices' },
-      { name: 'CI/CD', level: 82, icon: 'SiGithubactions' },
-      { name: 'Linux', level: 85, icon: 'SiLinux' },
-      { name: 'Figma', level: 78, icon: 'SiFigma' },
+      { name: 'Python (ANN / ML)', level: 85, icon: 'SiPython' },
+      { name: 'Business Analysis', level: 90, icon: 'SiMicrosoftexcel' },
+      { name: 'Explainable AI (SHAP)', level: 82, icon: 'SiTensorflow' },
+      { name: 'Git & GitHub', level: 90, icon: 'SiGit' },
+      { name: 'Project Management', level: 88, icon: 'SiJira' },
+      { name: 'Figma UI/UX', level: 80, icon: 'SiFigma' },
     ],
   },
 ];
@@ -370,39 +397,68 @@ export const projectsData = [
 export const experienceData = [
   {
     id: 1,
-    role: 'Senior Full-Stack Developer',
-    company: 'TechNova Inc.',
-    duration: '2023 — Present',
+    role: 'Academic Committee',
+    company: 'Information System Engineering Club (ISEC)',
+    duration: 'Oct 2024 — Oct 2025',
+    location: 'Jasin, Malacca',
     description:
-      'Leading the development of scalable web applications, mentoring junior developers, and architecting microservices infrastructure serving 100K+ users.',
-    technologies: ['React', 'Node.js', 'AWS', 'PostgreSQL', 'Docker'],
+      'Assisted in planning and organizing club events, academic programs, and student activities. Collaborated with committee members to coordinate project planning and event execution while ensuring smooth inter-committee communication.',
+    technologies: ['Project Management', 'Event Planning', 'Leadership', 'Teamwork'],
   },
   {
     id: 2,
-    role: 'Full-Stack Developer',
-    company: 'Digital Pulse Agency',
-    duration: '2021 — 2023',
+    role: 'Committee Member',
+    company: 'UiTM Blockchain Association',
+    duration: 'Oct 2024 — Oct 2025',
+    location: 'Jasin, Malacca',
     description:
-      'Built and deployed 15+ client projects ranging from e-commerce platforms to real-time dashboards. Improved team velocity by 40% through CI/CD automation.',
-    technologies: ['Next.js', 'TypeScript', 'MongoDB', 'GraphQL'],
+      'Supported the planning and execution of blockchain-related events and workshops. Worked closely with the committee to coordinate club activities, student engagement initiatives, and event logistics.',
+    technologies: ['React.js', 'Project Management', 'Event Logistics', 'Community Engagement'],
   },
   {
     id: 3,
-    role: 'Frontend Developer',
-    company: 'StartupXYZ',
-    duration: '2020 — 2021',
+    role: 'Special Task Duties',
+    company: 'Seniwara UiTM Kampus Jasin',
+    duration: 'Oct 2024 — Oct 2025',
+    location: 'Jasin, Malacca',
     description:
-      'Developed responsive web applications with pixel-perfect UI implementations. Reduced bundle size by 60% through code splitting and optimization.',
-    technologies: ['React', 'Redux', 'SASS', 'Jest'],
+      'Participated in theatre productions and club performances. Collaborated with team members in planning, rehearsals, cultural events organization, and public presentation execution.',
+    technologies: ['Event Management', 'Public Speaking', 'Creativity', 'Team Coordination'],
   },
   {
     id: 4,
-    role: 'Junior Developer',
-    company: 'CodeCraft Solutions',
-    duration: '2019 — 2020',
+    role: 'Entrepreneurship Committee',
+    company: 'Rakan Pembimbing Perkhidmatan Sokongan (PEERS)',
+    duration: 'Oct 2024 — Oct 2025',
+    location: 'Jasin, Malacca',
     description:
-      'Started my professional journey building internal tools and customer-facing applications. Gained expertise in full-stack JavaScript development.',
-    technologies: ['JavaScript', 'Node.js', 'Express', 'MySQL'],
+      'Assisted in organizing student development programs and club activities. Supported initiatives promoting student well-being, leadership development, and event coordination.',
+    technologies: ['Team Leadership', 'Problem Solving', 'Student Welfare', 'Event Planning'],
+  },
+];
+
+export const educationData = [
+  {
+    id: 1,
+    institution: 'Universiti Teknologi MARA (UiTM)',
+    degree: 'Bachelor of Information Systems (Hons.) Information Systems Engineering',
+    period: 'Jul 2023 — Jan 2027 (Final-Year)',
+    location: 'Kampus Jasin, Malacca',
+    grade: 'Final-Year Student',
+    description:
+      'Pursuing comprehensive coursework in software engineering, mobile application development, IoT architectures, database systems, and business process modeling.',
+    skills: ['Web Development', 'Mobile Application Development', 'IoT', 'Database Systems', 'Information Systems'],
+  },
+  {
+    id: 2,
+    institution: 'Malacca Matriculation College (KMM)',
+    degree: 'Foundation in Physical Sciences',
+    period: 'Aug 2022 — Jun 2023',
+    location: 'Malacca, Malaysia',
+    grade: 'CGPA 3.62',
+    description:
+      'Completed the Science Module with a CGPA of 3.62. Served as Peer Assisted Learning (PAL) Leader in Mathematics, establishing strong analytical foundations in Mathematics, Physics, and Computer Science.',
+    skills: ['Mathematics', 'Computer Science', 'Physics', 'Peer Tutoring'],
   },
 ];
 
@@ -451,14 +507,13 @@ export const navLinks = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Testimonials', href: '#testimonials' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export const typewriterStrings = [
-  'Full-Stack Developer',
-  'UI/UX Enthusiast',
-  'Open Source Contributor',
-  'Problem Solver',
-  'Creative Coder',
+  'Information Systems Engineer',
+  'Full-Stack Developer (Laravel & React)',
+  'Mobile Developer (Android & Flutter)',
+  'Business Analyst & Data Enthusiast',
+  'Final-Year UiTM Student',
 ];
