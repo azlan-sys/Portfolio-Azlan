@@ -129,7 +129,13 @@ export default function Experience() {
 
                     {edu.grade && (
                       <div className="education__grade-badge">
-                        <span>Academic Standing:</span> <strong>{edu.grade}</strong>
+                        <span>Grade / Standing:</span> <strong>{edu.grade}</strong>
+                      </div>
+                    )}
+
+                    {edu.activity && (
+                      <div className="education__activity-badge">
+                        <span>Role:</span> <strong>{edu.activity}</strong>
                       </div>
                     )}
 

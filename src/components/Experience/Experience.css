@@ -325,6 +325,20 @@
   padding: 4px 10px;
   border-radius: var(--radius-full);
   margin-bottom: var(--space-xs);
+  margin-right: 8px;
+}
+
+.education__activity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(var(--accent-cyan-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.3);
+  color: var(--accent-cyan);
+  font-size: var(--fs-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xs);
 }
 
 .education__location {

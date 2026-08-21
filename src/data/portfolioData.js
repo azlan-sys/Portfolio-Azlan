@@ -441,24 +441,40 @@ export const educationData = [
   {
     id: 1,
     institution: 'Universiti Teknologi MARA (UiTM)',
-    degree: 'Bachelor of Information Systems (Hons.) Information Systems Engineering',
-    period: 'Jul 2023 — Jan 2027 (Final-Year)',
-    location: 'Kampus Jasin, Malacca',
+    degree: 'Bachelor in Information Systems (Hons.) Information Systems Engineering',
+    period: 'Jul 2023 — Jan 2027',
+    location: 'Kampus Jasin, Malacca, Malaysia',
     grade: 'Final-Year Student',
     description:
-      'Pursuing comprehensive coursework in software engineering, mobile application development, IoT architectures, database systems, and business process modeling.',
-    skills: ['Web Development', 'Mobile Application Development', 'IoT', 'Database Systems', 'Information Systems'],
+      'Pursuing a Bachelor of Information Systems (Hons.) in Information Systems Engineering. Gained hands-on experience in software development, mobile application development, IoT, database management, and system analysis through academic projects. Actively involved in student organizations and leadership activities, strengthening teamwork, project management, and communication skills.',
+    skills: [
+      'Web Development',
+      'Mobile Application Development',
+      'IoT Systems',
+      'Database Management',
+      'System Analysis',
+      'Project Management',
+      'Teamwork',
+    ],
   },
   {
     id: 2,
-    institution: 'Malacca Matriculation College (KMM)',
+    institution: 'Malacca Matriculation College',
     degree: 'Foundation in Physical Sciences',
     period: 'Aug 2022 — Jun 2023',
     location: 'Malacca, Malaysia',
     grade: 'CGPA 3.62',
+    activity: 'Peer Assisted Learning (PAL) Leader – Mathematics',
     description:
-      'Completed the Science Module with a CGPA of 3.62. Served as Peer Assisted Learning (PAL) Leader in Mathematics, establishing strong analytical foundations in Mathematics, Physics, and Computer Science.',
-    skills: ['Mathematics', 'Computer Science', 'Physics', 'Peer Tutoring'],
+      'Completed the Science Module with a CGPA of 3.62. Throughout my studies, I developed a strong foundation in Mathematics, Physics, and Computer Science while actively participating in academic and co-curricular activities. My experience at Melaka Matriculation College strengthened my analytical thinking, problem-solving, communication, and teamwork skills, preparing me for further studies in Information Systems Engineering.',
+    skills: [
+      'Mathematics',
+      'Computer Science',
+      'Physics',
+      'Analytical Thinking',
+      'Problem Solving',
+      'Peer Tutoring (PAL Leader)',
+    ],
   },
 ];
 
