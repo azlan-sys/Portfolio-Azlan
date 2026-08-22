@@ -151,6 +151,7 @@ export const projectsData = [
     role: 'IoT & Full-Stack Developer',
     year: '2024',
     image: '/images/smart-camera-drybox.jpg',
+    video: '/videos/ai-powered-smart-camera-dry-box.mp4',
     description:
       'Smart IoT & AI-driven dry box monitoring system for camera equipment with real-time humidity tracking, predictive silica replacement AI, and automated alerts.',
     longDescription:

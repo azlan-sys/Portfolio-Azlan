@@ -64,6 +64,13 @@ export default function ProjectCard({ project, onOpenModal }) {
                   ? project.video
                   : `${import.meta.env.BASE_URL}${project.video.replace(/^\//, '')}`
               }
+              poster={
+                project.image
+                  ? (project.image.startsWith('http')
+                      ? project.image
+                      : `${import.meta.env.BASE_URL}${project.image.replace(/^\//, '')}`)
+                  : undefined
+              }
               autoPlay
               loop
               muted

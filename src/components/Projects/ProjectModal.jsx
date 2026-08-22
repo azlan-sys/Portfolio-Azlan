@@ -115,6 +115,7 @@ export default function ProjectModal({ project, onClose }) {
                     <video
                       className="project-modal-video"
                       src={mediaUrl(project.video)}
+                      poster={project.image ? mediaUrl(project.image) : undefined}
                       autoPlay
                       loop
                       muted
