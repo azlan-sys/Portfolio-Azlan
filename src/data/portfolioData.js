@@ -319,6 +319,7 @@ export const projectsData = [
     role: 'Full-Stack Web Developer',
     year: '2026',
     image: '/images/safecampus-admin.jpg',
+    video: '/videos/safecampus-admin.mp4',
     description:
       'Web-based incident triage & campus safety command center built with React, Vite, Leaflet Maps, and Firebase for real-time incident resolution.',
     longDescription:
