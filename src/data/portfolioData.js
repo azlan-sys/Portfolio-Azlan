@@ -433,6 +433,66 @@ export const projectsData = [
     featured: true,
     color: '#f59e0b',
   },
+  {
+    id: 7,
+    title: 'Detectify — URL Security Scanner',
+    tagline: 'Real-Time Phishing & Scam URL Detection Chrome Extension (MV3) & Express API',
+    role: 'Full-Stack & Security Developer',
+    year: '2025',
+    image: '/images/detectify.jpg',
+    description:
+      'Chrome browser extension detecting phishing links, crypto drainers, and malicious URLs in real time with safety scoring and Express.js backend analysis.',
+    longDescription:
+      'A real-time cybersecurity browser extension built with React 19, TypeScript, and Chrome Extension Manifest V3. Evaluates active browser tab URLs against heuristic scam patterns, suspicious domain structures, crypto wallet drainers, and phishing keywords, backed by an Express.js analysis server.',
+    overview:
+      'Detectify was engineered to protect web users from evolving online scams, deceptive phishing campaigns, and malicious redirects. The extension automatically captures the active tab URL using Manifest V3 service workers, sending telemetry to an Express API server for pattern matching, entropy analysis, and keyword heuristics. Users receive an instant visual safety score (Safe, Suspicious, Dangerous) with granular threat indicators (crypto scams, fake banking logins, URL shorteners) to prevent credential theft.',
+    highlights: [
+      'Real-Time Active Tab URL Inspection',
+      'Chrome Extension Manifest V3 & Service Worker',
+      'Phishing, Crypto Drain & Scam Heuristics',
+      'Circular Visual Safety Score & Risk Level',
+      'Express.js & Node.js Analysis API',
+      'Zero-Latency React 19 & TypeScript Popup',
+    ],
+    keyFeatures: [
+      {
+        title: 'Instant Active Tab URL Inspection',
+        desc: 'Captures and analyzes the current tab URL immediately when the popup opens using Chrome Extension MV3 background service workers.',
+      },
+      {
+        title: 'Heuristic Scam & Phishing Engine',
+        desc: 'Detects high-risk patterns including fake login pages (verify-account, login-now), crypto drains (metamask, walletconnect, airdrop), and deceptive URL shorteners.',
+      },
+      {
+        title: 'Visual Safety Scoring & Risk Gauges',
+        desc: 'Provides clear visual risk ratings (Safe / Suspicious / Dangerous) with dynamic color-coded indicators to guide user decision-making.',
+      },
+      {
+        title: 'Express.js Threat Analysis Server',
+        desc: 'Dedicated Node.js backend running pattern matching algorithms, domain verification, and threat payload classification.',
+      },
+      {
+        title: 'Modern TypeScript & Tailwind UI',
+        desc: 'Lightweight, type-safe popup interface built with React 19, Vite 7, and Tailwind CSS 4 for seamless browser performance.',
+      },
+    ],
+    architecture:
+      'Architected as a Manifest V3 Chrome Extension powered by React 19, TypeScript, and Vite 7 for the client popup, communicating via RESTful endpoints to a Node.js & Express.js pattern analysis backend.',
+    techStack: [
+      'React 19',
+      'TypeScript',
+      'Chrome Extension (MV3)',
+      'Node.js',
+      'Express',
+      'Tailwind CSS 4',
+      'Vite 7',
+    ],
+    category: 'Security',
+    liveUrl: 'https://github.com/azlan-sys/Detectify-url-security',
+    githubUrl: 'https://github.com/azlan-sys/Detectify-url-security.git',
+    featured: true,
+    color: '#00e5ff',
+  },
 ];
 
 export const experienceData = [
