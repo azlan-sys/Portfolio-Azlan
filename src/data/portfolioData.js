@@ -199,6 +199,7 @@ export const projectsData = [
     role: 'AI & Machine Learning Researcher',
     year: '2024',
     image: '/images/hiv-icu-ann.jpg',
+    video: '/videos/icu-admission-risk.mp4',
     description:
       'Artificial Neural Network (ANN) deep learning system predicting ICU admission risk in immunocompromised HIV patients with 0.961 ROC-AUC and SHAP explainability.',
     longDescription:
